@@ -169,8 +169,8 @@ public class QRBitmapBuilder {
     /**
      * scaling by size
      * @param bitmap your bitmap object
-     * @param size
-     * @return
+     * @param size scaling size
+     * @return {@link Bitmap}
      */
     public static Bitmap scaling(Bitmap bitmap, float size) {
         if (null == bitmap) {
@@ -182,5 +182,8 @@ public class QRBitmapBuilder {
             return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
                     bitmap.getHeight(), matrix, true);
         }
+    }
+
+    private QRBitmapBuilder() {
     }
 }
