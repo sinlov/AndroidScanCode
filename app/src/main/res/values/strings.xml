@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">ScanCode</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_qrcode_create">QRCodeCreateActivity</string>
+    <string name="title_activity_scan_result">ScanResultActivity</string>
+    <string name="toast_msg_double_click_exit_app">Double click to exit app!</string>
+    <string name="btn_act_create_submit">Submit</string>
+    <string name="content_img_act_create_result">content:img:act:create:result</string>
+    <string name="toast_msg_error_input">Error Input, pleas check!</string>
+</resources>
