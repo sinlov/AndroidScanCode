@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.zxing.WriterException;
 import com.jule.sinlov.scancode.R;
@@ -25,6 +26,7 @@ public class QRCodeCreateActivity extends BaseActivity implements View.OnClickLi
     private EditText etInput;
     private Button btnSubmit;
     private ImageView imgQRResult;
+    private TextView tvResult;
 
     @Override
     public void onClick(View v) {
@@ -48,6 +50,7 @@ public class QRCodeCreateActivity extends BaseActivity implements View.OnClickLi
                         BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
                 if (null != qrMap) {
                     imgQRResult.setImageBitmap(qrMap);
+                    tvResult.setText(input);
                 }
             } catch (WriterException e) {
                 e.printStackTrace();
@@ -72,6 +75,7 @@ public class QRCodeCreateActivity extends BaseActivity implements View.OnClickLi
     private void initView() {
         this.etInput = (EditText) findViewById(R.id.et_act_create_input);
         this.imgQRResult = (ImageView) findViewById(R.id.img_act_create_result);
+        this.tvResult = (TextView) findViewById(R.id.tv_act_create_result);
         this.btnSubmit = (Button) findViewById(R.id.btn_act_create_submit);
         btnSubmit.setOnClickListener(this);
     }
