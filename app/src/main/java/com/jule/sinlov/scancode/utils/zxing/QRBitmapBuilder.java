@@ -22,7 +22,7 @@ public class QRBitmapBuilder {
     private static final int PIXELS_SET_DEFAULT = 0xff000000;
     private static final int WIDTH_HEIGHT_DEFAULT = 800;
     private static final Bitmap.Config BITMAP_CONF_DEFAULT = Bitmap.Config.ARGB_4444;
-    private static final float INNER_BITMAP_SIZE_DEFAULT = 0.2f;
+    private static final float INNER_BITMAP_SIZE_DEFAULT = 0.5f;
 
     /**
      * create QR bitmap by content

@@ -1,6 +1,7 @@
 package com.jule.sinlov.scancode.view.create;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,7 +43,9 @@ public class QRCodeCreateActivity extends BaseActivity implements View.OnClickLi
         if (checkInput(input)) {
             InputMethod.closeInputPan(this);
             try {
-                Bitmap qrMap = QRBitmapBuilder.createQRBitMap(input, 800, 800);
+//                Bitmap qrMap = QRBitmapBuilder.createQRBitMap(input, 800, 800);
+                Bitmap qrMap = QRBitmapBuilder.createQRBitMapWithImage(input,
+                        BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
                 if (null != qrMap) {
                     imgQRResult.setImageBitmap(qrMap);
                 }
