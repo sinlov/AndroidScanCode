@@ -13,7 +13,7 @@ import com.google.zxing.common.BitMatrix;
 import java.util.Hashtable;
 
 /**
- * for QR Bitmap build
+ * for QR Bitmap build this Builder not thread safe.
  * Created by "sinlov" on 2015/10/28.
  */
 public class QRBitmapBuilder {
