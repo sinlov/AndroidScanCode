@@ -22,6 +22,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
+import com.jule.sinlov.scancode.utils.zxing.ZXingConf;
+
+@SuppressWarnings("deprecation")
 final class PreviewCallback implements Camera.PreviewCallback {
 
   private static final String TAG = PreviewCallback.class.getSimpleName();
@@ -52,8 +55,9 @@ final class PreviewCallback implements Camera.PreviewCallback {
       message.sendToTarget();
       previewHandler = null;
     } else {
-      Log.d(TAG, "Got preview callback, but no handler for it");
+      if (ZXingConf.DEBUG) {
+        Log.d(TAG, "Got preview callback, but no handler for it");
+      }
     }
   }
-
 }

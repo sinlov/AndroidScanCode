@@ -28,6 +28,7 @@ import android.util.Log;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.jule.sinlov.scancode.R;
+import com.jule.sinlov.scancode.utils.zxing.ZXingConf;
 import com.jule.sinlov.scancode.utils.zxing.activity.CaptureActivity;
 import com.jule.sinlov.scancode.utils.zxing.camera.CameraManager;
 import com.jule.sinlov.scancode.utils.zxing.view.ViewfinderResultPointCallback;
@@ -75,11 +76,15 @@ public final class CaptureActivityHandler extends Handler {
         }
         break;
       case R.id.restart_preview:
-        Log.d(TAG, "Got restart preview message");
+        if (ZXingConf.DEBUG) {
+          Log.d(TAG, "Got restart preview message");
+        }
         restartPreviewAndDecode();
         break;
       case R.id.decode_succeeded:
-        Log.d(TAG, "Got decode succeeded message");
+        if (ZXingConf.DEBUG) {
+          Log.d(TAG, "Got decode succeeded message");
+        }
         state = State.SUCCESS;
         Bundle bundle = message.getData();
         
@@ -96,15 +101,20 @@ public final class CaptureActivityHandler extends Handler {
         CameraManager.get().requestPreviewFrame(decodeThread.getHandler(), R.id.decode);
         break;
       case R.id.return_scan_result:
-        Log.d(TAG, "Got return scan result message");
+        if (ZXingConf.DEBUG) {
+          Log.d(TAG, "Got return scan result message");
+        }
         activity.setResult(Activity.RESULT_OK, (Intent) message.obj);
         activity.finish();
         break;
       case R.id.launch_product_query:
-        Log.d(TAG, "Got product query message");
+        if (ZXingConf.DEBUG) {
+          Log.d(TAG, "Got product query message");
+        }
         String url = (String) message.obj;
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+        //TODO API 11+ FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET will bad
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET | Intent.FLAG_ACTIVITY_NEW_TASK );
         activity.startActivity(intent);
         break;
     }
@@ -118,7 +128,9 @@ public final class CaptureActivityHandler extends Handler {
     try {
       decodeThread.join();
     } catch (InterruptedException e) {
-      // continue
+      if (ZXingConf.DEBUG) {
+        e.printStackTrace();
+      }
     }
 
     // Be absolutely sure we don't send any queued up messages
@@ -134,5 +146,4 @@ public final class CaptureActivityHandler extends Handler {
       activity.drawViewfinder();
     }
   }
-
 }

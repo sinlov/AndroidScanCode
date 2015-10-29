@@ -70,31 +70,57 @@ public final class PlanarYUVLuminanceSource extends LuminanceSource {
   public byte[] getMatrix() {
     int width = getWidth();
     int height = getHeight();
-
-    // If the caller asks for the entire underlying image, save the copy and give them the
-    // original data. The docs specifically warn that result.length must be ignored.
-    if (width == dataWidth && height == dataHeight) {
-      return yuvData;
-    }
+    if (matrixYuvData(width, height)) return yuvData;
 
     int area = width * height;
     byte[] matrix = new byte[area];
     int inputOffset = top * dataWidth + left;
+    if (matrixDataFullWidth(width, area, matrix, inputOffset)) return matrix;
+    otherWiseCroppedTime(width, height, matrix, inputOffset);
+    return matrix;
+  }
 
-    // If the width matches the full width of the underlying data, perform a single copy.
-    if (width == dataWidth) {
-      System.arraycopy(yuvData, inputOffset, matrix, 0, area);
-      return matrix;
-    }
-
-    // Otherwise copy one cropped row at a time.
+  /**
+   * Otherwise copy one cropped row at a time.
+   * @param width width
+   * @param height height
+   * @param matrix matrix
+   * @param inputOffset input offset
+   */
+  private void otherWiseCroppedTime(int width, int height, byte[] matrix, int inputOffset) {
     byte[] yuv = yuvData;
     for (int y = 0; y < height; y++) {
       int outputOffset = y * width;
       System.arraycopy(yuv, inputOffset, matrix, outputOffset, width);
       inputOffset += dataWidth;
     }
-    return matrix;
+  }
+
+  /**
+   * If the width matches the full width of the underlying data, perform a single copy.
+   * @param width width
+   * @param area area
+   * @param matrix matrix
+   * @param inputOffset input off set
+   * @return boolean
+   */
+  private boolean matrixDataFullWidth(int width, int area, byte[] matrix, int inputOffset) {
+    if (width == dataWidth) {
+      System.arraycopy(yuvData, inputOffset, matrix, 0, area);
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * If the caller asks for the entire underlying image, save the copy and give them the
+   * original data. The docs specifically warn that result.length must be ignored.
+   * @param width width
+   * @param height height
+   * @return boolean
+   */
+  private boolean matrixYuvData(int width, int height) {
+    return width == dataWidth && height == dataHeight;
   }
 
   @Override

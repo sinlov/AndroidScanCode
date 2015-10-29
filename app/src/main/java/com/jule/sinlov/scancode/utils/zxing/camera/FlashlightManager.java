@@ -46,11 +46,11 @@ final class FlashlightManager {
     iHardwareService = getHardwareService();
     setFlashEnabledMethod = getSetFlashEnabledMethod(iHardwareService);
     if (ZXingConf.DEBUG) {
-    }
-    if (iHardwareService == null) {
-      Log.v(TAG, "This device does supports control of a flashlight");
-    } else {
-      Log.v(TAG, "This device does not support control of a flashlight");
+      if (iHardwareService == null) {
+        Log.v(TAG, "This device does supports control of a flashlight");
+      } else {
+        Log.v(TAG, "This device does not support control of a flashlight");
+      }
     }
   }
 
@@ -110,10 +110,14 @@ final class FlashlightManager {
     try {
       return Class.forName(name);
     } catch (ClassNotFoundException cnfe) {
-      // OK
+      if (ZXingConf.DEBUG) {
+        cnfe.printStackTrace();
+      }
       return null;
     } catch (RuntimeException re) {
-      Log.w(TAG, "Unexpected error while finding class " + name, re);
+      if (ZXingConf.DEBUG) {
+        Log.w(TAG, "Unexpected error while finding class " + name, re);
+      }
       return null;
     }
   }
@@ -123,9 +127,14 @@ final class FlashlightManager {
       return clazz.getMethod(name, argClasses);
     } catch (NoSuchMethodException nsme) {
       // OK
+      if (ZXingConf.DEBUG) {
+        nsme.printStackTrace();
+      }
       return null;
     } catch (RuntimeException re) {
-      Log.w(TAG, "Unexpected error while finding method " + name, re);
+      if (ZXingConf.DEBUG) {
+        Log.w(TAG, "Unexpected error while finding method " + name, re);
+      }
       return null;
     }
   }
@@ -134,13 +143,19 @@ final class FlashlightManager {
     try {
       return method.invoke(instance, args);
     } catch (IllegalAccessException e) {
-      Log.w(TAG, "Unexpected error while invoking " + method, e);
+      if (ZXingConf.DEBUG) {
+        Log.w(TAG, "Unexpected error while invoking " + method, e);
+      }
       return null;
     } catch (InvocationTargetException e) {
-      Log.w(TAG, "Unexpected error while invoking " + method, e.getCause());
+      if (ZXingConf.DEBUG) {
+        Log.w(TAG, "Unexpected error while invoking " + method, e.getCause());
+      }
       return null;
     } catch (RuntimeException re) {
-      Log.w(TAG, "Unexpected error while invoking " + method, re);
+      if (ZXingConf.DEBUG) {
+        Log.w(TAG, "Unexpected error while invoking " + method, re);
+      }
       return null;
     }
   }
@@ -150,5 +165,4 @@ final class FlashlightManager {
       invoke(setFlashEnabledMethod, iHardwareService, active);
     }
   }
-
 }

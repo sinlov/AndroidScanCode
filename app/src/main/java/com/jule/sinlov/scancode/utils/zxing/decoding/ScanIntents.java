@@ -20,8 +20,8 @@ package com.jule.sinlov.scancode.utils.zxing.decoding;
  * This class provides the constants to use when sending an Intent to Barcode Scanner.
  * These strings are effectively API and cannot be changed.
  */
-public final class Intents {
-  private Intents() {
+public final class ScanIntents {
+  private ScanIntents() {
   }
 
   public static final class Scan {

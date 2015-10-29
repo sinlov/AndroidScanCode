@@ -29,6 +29,7 @@ import com.google.zxing.ReaderException;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
 import com.jule.sinlov.scancode.R;
+import com.jule.sinlov.scancode.utils.zxing.ZXingConf;
 import com.jule.sinlov.scancode.utils.zxing.activity.CaptureActivity;
 import com.jule.sinlov.scancode.utils.zxing.camera.CameraManager;
 import com.jule.sinlov.scancode.utils.zxing.camera.PlanarYUVLuminanceSource;
@@ -95,7 +96,9 @@ final class DecodeHandler extends Handler {
 
     if (rawResult != null) {
       long end = System.currentTimeMillis();
-      Log.d(TAG, "Found barcode (" + (end - start) + " ms):\n" + rawResult.toString());
+        if (ZXingConf.DEBUG) {
+            Log.d(TAG, "Found barcode (" + (end - start) + " ms):\n" + rawResult.toString());
+        }
       Message message = Message.obtain(activity.getHandler(), R.id.decode_succeeded, rawResult);
       Bundle bundle = new Bundle();
       bundle.putParcelable(DecodeThread.BARCODE_BITMAP, source.renderCroppedGreyscaleBitmap());
