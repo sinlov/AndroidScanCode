@@ -1,4 +1,4 @@
-package com.jule.sinlov.scancode.utils.zxing.activity;
+package com.loqti.afw.zxing.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -20,12 +20,12 @@ import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
-import com.jule.sinlov.scancode.R;
-import com.jule.sinlov.scancode.utils.zxing.ZXingConf;
-import com.jule.sinlov.scancode.utils.zxing.camera.CameraManager;
-import com.jule.sinlov.scancode.utils.zxing.decoding.CaptureActivityHandler;
-import com.jule.sinlov.scancode.utils.zxing.decoding.InactivityTimer;
-import com.jule.sinlov.scancode.utils.zxing.view.ViewfinderView;
+import com.loqti.afw.zxing.R;
+import com.loqti.afw.zxing.ZXingConf;
+import com.loqti.afw.zxing.camera.CameraManager;
+import com.loqti.afw.zxing.decoding.CaptureActivityHandler;
+import com.loqti.afw.zxing.decoding.InactivityTimer;
+import com.loqti.afw.zxing.view.ViewfinderView;
 
 import java.io.IOException;
 import java.util.Vector;

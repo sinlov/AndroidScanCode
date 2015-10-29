@@ -1,4 +1,4 @@
-package com.jule.sinlov.scancode.utils.zxing;
+package com.loqti.afw.zxing;
 
 /**
  * for ZXing utils config

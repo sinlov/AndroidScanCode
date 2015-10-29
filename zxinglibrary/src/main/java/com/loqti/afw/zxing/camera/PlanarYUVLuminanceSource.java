@@ -14,10 +14,8 @@
  * limitations under the License.
  */
 
-package com.jule.sinlov.scancode.utils.zxing.camera;
-
+package com.loqti.afw.zxing.camera;
 import android.graphics.Bitmap;
-
 import com.google.zxing.LuminanceSource;
 
 /**

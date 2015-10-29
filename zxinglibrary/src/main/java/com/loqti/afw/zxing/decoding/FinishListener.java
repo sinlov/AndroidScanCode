@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.jule.sinlov.scancode.utils.zxing.decoding;
+package com.loqti.afw.zxing.decoding;
 
 import android.app.Activity;
 import android.content.DialogInterface;

@@ -14,15 +14,14 @@
  * limitations under the License.
  */
 
-package com.jule.sinlov.scancode.utils.zxing.camera;
+package com.loqti.afw.zxing.camera;
 
 import android.hardware.Camera;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-import com.jule.sinlov.scancode.utils.zxing.ZXingConf;
-
+import com.loqti.afw.zxing.ZXingConf;
 
 @SuppressWarnings("deprecation")
 final class AutoFocusCallback implements Camera.AutoFocusCallback {

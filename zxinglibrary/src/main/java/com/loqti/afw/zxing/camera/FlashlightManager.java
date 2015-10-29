@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.jule.sinlov.scancode.utils.zxing.camera;
+package com.loqti.afw.zxing.camera;
 
 import android.os.IBinder;
 import android.util.Log;
 
-import com.jule.sinlov.scancode.utils.zxing.ZXingConf;
+import com.loqti.afw.zxing.ZXingConf;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

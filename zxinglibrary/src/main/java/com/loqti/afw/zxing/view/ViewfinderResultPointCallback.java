@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.jule.sinlov.scancode.utils.zxing.view;
+package com.loqti.afw.zxing.view;
 
 import com.google.zxing.ResultPoint;
 import com.google.zxing.ResultPointCallback;

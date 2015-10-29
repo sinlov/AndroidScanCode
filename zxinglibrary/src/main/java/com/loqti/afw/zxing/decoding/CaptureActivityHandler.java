@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.jule.sinlov.scancode.utils.zxing.decoding;
+package com.loqti.afw.zxing.decoding;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -27,11 +27,11 @@ import android.util.Log;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
-import com.jule.sinlov.scancode.R;
-import com.jule.sinlov.scancode.utils.zxing.ZXingConf;
-import com.jule.sinlov.scancode.utils.zxing.activity.CaptureActivity;
-import com.jule.sinlov.scancode.utils.zxing.camera.CameraManager;
-import com.jule.sinlov.scancode.utils.zxing.view.ViewfinderResultPointCallback;
+import com.loqti.afw.zxing.R;
+import com.loqti.afw.zxing.ZXingConf;
+import com.loqti.afw.zxing.activity.CaptureActivity;
+import com.loqti.afw.zxing.camera.CameraManager;
+import com.loqti.afw.zxing.view.ViewfinderResultPointCallback;
 
 import java.util.Vector;
 
@@ -66,57 +66,51 @@ public final class CaptureActivityHandler extends Handler {
 
   @Override
   public void handleMessage(Message message) {
-    switch (message.what) {
-      case R.id.auto_focus:
-        //Log.d(TAG, "Got auto-focus message");
-        // When one auto focus pass finishes, start another. This is the closest thing to
-        // continuous AF. It does seem to hunt a bit, but I'm not sure what else to do.
-        if (state == State.PREVIEW) {
-          CameraManager.get().requestAutoFocus(this, R.id.auto_focus);
-        }
-        break;
-      case R.id.restart_preview:
-        if (ZXingConf.DEBUG) {
-          Log.d(TAG, "Got restart preview message");
-        }
-        restartPreviewAndDecode();
-        break;
-      case R.id.decode_succeeded:
-        if (ZXingConf.DEBUG) {
-          Log.d(TAG, "Got decode succeeded message");
-        }
-        state = State.SUCCESS;
-        Bundle bundle = message.getData();
-        
-        /***********************************************************************/
-        Bitmap barcode = bundle == null ? null :
-            (Bitmap) bundle.getParcelable(DecodeThread.BARCODE_BITMAP);//���ñ����߳�
-        
-        activity.handleDecode((Result) message.obj, barcode);//���ؽ��
-        /***********************************************************************/
-        break;
-      case R.id.decode_failed:
-        // We're decoding as fast as possible, so when one decode fails, start another.
-        state = State.PREVIEW;
-        CameraManager.get().requestPreviewFrame(decodeThread.getHandler(), R.id.decode);
-        break;
-      case R.id.return_scan_result:
-        if (ZXingConf.DEBUG) {
-          Log.d(TAG, "Got return scan result message");
-        }
-        activity.setResult(Activity.RESULT_OK, (Intent) message.obj);
-        activity.finish();
-        break;
-      case R.id.launch_product_query:
-        if (ZXingConf.DEBUG) {
-          Log.d(TAG, "Got product query message");
-        }
-        String url = (String) message.obj;
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        //TODO API 11+ FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET will bad
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET | Intent.FLAG_ACTIVITY_NEW_TASK );
-        activity.startActivity(intent);
-        break;
+    int what = message.what;
+    if (what == R.id.auto_focus) {
+      //Log.d(TAG, "Got auto-focus message");
+      // When one auto focus pass finishes, start another. This is the closest thing to
+      // continuous AF. It does seem to hunt a bit, but I'm not sure what else to do.
+      if (state == State.PREVIEW) {
+        CameraManager.get().requestAutoFocus(this, R.id.auto_focus);
+      }
+    }else if (what ==  R.id.restart_preview) {
+      if (ZXingConf.DEBUG) {
+        Log.d(TAG, "Got restart preview message");
+      }
+      restartPreviewAndDecode();
+    }else if (what == R.id.decode_succeeded) {
+      if (ZXingConf.DEBUG) {
+        Log.d(TAG, "Got decode succeeded message");
+      }
+      state = State.SUCCESS;
+      Bundle bundle = message.getData();
+
+      /***********************************************************************/
+      Bitmap barcode = bundle == null ? null :
+              (Bitmap) bundle.getParcelable(DecodeThread.BARCODE_BITMAP);//���ñ����߳�
+
+      activity.handleDecode((Result) message.obj, barcode);//���ؽ��
+      /***********************************************************************/
+    }else if (what == R.id.decode_failed) {
+      // We're decoding as fast as possible, so when one decode fails, start another.
+      state = State.PREVIEW;
+      CameraManager.get().requestPreviewFrame(decodeThread.getHandler(), R.id.decode);
+    }else if (what == R.id.return_scan_result) {
+      if (ZXingConf.DEBUG) {
+        Log.d(TAG, "Got return scan result message");
+      }
+      activity.setResult(Activity.RESULT_OK, (Intent) message.obj);
+      activity.finish();
+    }else if (what == R.id.launch_product_query) {
+      if (ZXingConf.DEBUG) {
+        Log.d(TAG, "Got product query message");
+      }
+      String url = (String) message.obj;
+      Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+      //TODO API 11+ FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET will bad
+      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET | Intent.FLAG_ACTIVITY_NEW_TASK );
+      activity.startActivity(intent);
     }
   }
 

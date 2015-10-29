@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.jule.sinlov.scancode.utils.zxing.view;
+package com.loqti.afw.zxing.view;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -26,8 +26,8 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.google.zxing.ResultPoint;
-import com.jule.sinlov.scancode.R;
-import com.jule.sinlov.scancode.utils.zxing.camera.CameraManager;
+import com.loqti.afw.zxing.R;
+import com.loqti.afw.zxing.camera.CameraManager;
 
 import java.util.Collection;
 import java.util.HashSet;

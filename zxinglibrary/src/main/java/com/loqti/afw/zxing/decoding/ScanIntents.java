@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.jule.sinlov.scancode.utils.zxing.decoding;
+package com.loqti.afw.zxing.decoding;
 
 /**
  * This class provides the constants to use when sending an Intent to Barcode Scanner.

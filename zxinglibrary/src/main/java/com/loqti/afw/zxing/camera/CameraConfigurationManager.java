@@ -14,18 +14,17 @@
  * limitations under the License.
  */
 
-package com.jule.sinlov.scancode.utils.zxing.camera;
+package com.loqti.afw.zxing.camera;
 
 import android.content.Context;
 import android.graphics.Point;
 import android.hardware.Camera;
 import android.os.Build;
-import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 
-import com.jule.sinlov.scancode.utils.zxing.ZXingConf;
+import com.loqti.afw.zxing.ZXingConf;
 
 import java.util.regex.Pattern;
 
@@ -136,7 +135,6 @@ public final class CameraConfigurationManager {
      * @param cameraResolution camera resolution
      * @return Point
      */
-    @NonNull
     private static Point cameraResolutionPoint(Point screenResolution, Point cameraResolution) {
         if (cameraResolution == null) {
             cameraResolution = new Point(

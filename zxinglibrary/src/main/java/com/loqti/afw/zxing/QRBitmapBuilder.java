@@ -1,4 +1,4 @@
-package com.jule.sinlov.scancode.utils.zxing;
+package com.loqti.afw.zxing;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -54,8 +54,8 @@ public class QRBitmapBuilder {
      * @param content you words for QR map information
      * @param width bitmap width
      * @param height bitmap height
-     * @param config you can use like {@link android.graphics.Bitmap.Config#ARGB_4444} or others,
-     *               do not use {@link android.graphics.Bitmap.Config#RGB_565}
+     * @param config you can use like {@link Bitmap.Config#ARGB_4444} or others,
+     *               do not use {@link Bitmap.Config#RGB_565}
      * @return {@link Bitmap}
      * @throws WriterException
      */
@@ -128,8 +128,8 @@ public class QRBitmapBuilder {
      * @param widthAndHeight inner image width and height
      * @param innerBitmap inner image width and height
      * @param size inner bitmap hundred percent sometimes use 0.2f
-     * @param config you can use like {@link android.graphics.Bitmap.Config#ARGB_4444} or others,
-     *               do not use {@link android.graphics.Bitmap.Config#RGB_565}
+     * @param config you can use like {@link Bitmap.Config#ARGB_4444} or others,
+     *               do not use {@link Bitmap.Config#RGB_565}
      * @return {@link Bitmap}
      * @throws WriterException
      */

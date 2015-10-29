@@ -22,8 +22,8 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.2.1'
-    compile 'com.google.zxing:core:3.2.1'
     compile files('libs/Android-eggroll-base-1.1.jar')
     compile files('libs/Android-eggroll-lifecycle-1.2.0_source.jar')
     compile files('libs/Android-eggroll-utils-1.2.1_source.jar')
+    compile project(':zxinglibrary')
 }

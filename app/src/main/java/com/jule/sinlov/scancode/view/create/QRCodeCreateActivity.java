@@ -14,10 +14,10 @@ import android.widget.TextView;
 import com.google.zxing.WriterException;
 import com.jule.sinlov.scancode.R;
 import com.jule.sinlov.scancode.application.ScanCodeApplication;
-import com.jule.sinlov.scancode.utils.zxing.QRBitmapBuilder;
 import com.loqti.afw.base.codewidget.ToastBuilder;
 import com.loqti.afw.lifecycle.BaseActivity;
 import com.loqti.afw.utils.InputMethod;
+import com.loqti.afw.zxing.QRBitmapBuilder;
 
 import java.lang.ref.WeakReference;
 

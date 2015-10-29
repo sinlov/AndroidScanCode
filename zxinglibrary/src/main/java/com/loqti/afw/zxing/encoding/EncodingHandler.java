@@ -1,4 +1,4 @@
-package com.jule.sinlov.scancode.utils.zxing.encoding;
+package com.loqti.afw.zxing.encoding;
 
 import android.graphics.Bitmap;
 
@@ -9,6 +9,7 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
 import java.util.Hashtable;
+
 /**
  * @author Ryan Tang
  *

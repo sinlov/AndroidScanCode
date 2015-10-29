@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.jule.sinlov.scancode.utils.zxing.decoding;
+package com.loqti.afw.zxing.decoding;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,11 +28,11 @@ import com.google.zxing.MultiFormatReader;
 import com.google.zxing.ReaderException;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
-import com.jule.sinlov.scancode.R;
-import com.jule.sinlov.scancode.utils.zxing.ZXingConf;
-import com.jule.sinlov.scancode.utils.zxing.activity.CaptureActivity;
-import com.jule.sinlov.scancode.utils.zxing.camera.CameraManager;
-import com.jule.sinlov.scancode.utils.zxing.camera.PlanarYUVLuminanceSource;
+import com.loqti.afw.zxing.R;
+import com.loqti.afw.zxing.ZXingConf;
+import com.loqti.afw.zxing.activity.CaptureActivity;
+import com.loqti.afw.zxing.camera.CameraManager;
+import com.loqti.afw.zxing.camera.PlanarYUVLuminanceSource;
 
 import java.util.Hashtable;
 
@@ -51,14 +51,12 @@ final class DecodeHandler extends Handler {
 
   @Override
   public void handleMessage(Message message) {
-    switch (message.what) {
-      case R.id.decode:
-        //Log.d(TAG, "Got decode message");
-        decode((byte[]) message.obj, message.arg1, message.arg2);
-        break;
-      case R.id.quit:
-        Looper.myLooper().quit();
-        break;
+    int what = message.what;
+    if (what == R.id.decode) {
+      //Log.d(TAG, "Got decode message");
+      decode((byte[]) message.obj, message.arg1, message.arg2);
+    }else if (what == R.id.quit) {
+      Looper.myLooper().quit();
     }
   }
 
