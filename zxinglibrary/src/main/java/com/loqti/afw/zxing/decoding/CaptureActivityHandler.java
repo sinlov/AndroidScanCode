@@ -67,19 +67,19 @@ public final class CaptureActivityHandler extends Handler {
   @Override
   public void handleMessage(Message message) {
     int what = message.what;
-    if (what == R.id.auto_focus) {
+    if (what == R.id.zxing_auto_focus) {
       //Log.d(TAG, "Got auto-focus message");
       // When one auto focus pass finishes, start another. This is the closest thing to
       // continuous AF. It does seem to hunt a bit, but I'm not sure what else to do.
       if (state == State.PREVIEW) {
-        CameraManager.get().requestAutoFocus(this, R.id.auto_focus);
+        CameraManager.get().requestAutoFocus(this, R.id.zxing_auto_focus);
       }
-    }else if (what ==  R.id.restart_preview) {
+    }else if (what ==  R.id.zxing_restart_preview) {
       if (ZXingConf.DEBUG) {
         Log.d(TAG, "Got restart preview message");
       }
       restartPreviewAndDecode();
-    }else if (what == R.id.decode_succeeded) {
+    }else if (what == R.id.zxing_decode_succeeded) {
       if (ZXingConf.DEBUG) {
         Log.d(TAG, "Got decode succeeded message");
       }
@@ -92,17 +92,17 @@ public final class CaptureActivityHandler extends Handler {
 
       activity.handleDecode((Result) message.obj, barcode);//���ؽ��
       /***********************************************************************/
-    }else if (what == R.id.decode_failed) {
+    }else if (what == R.id.zxing_decode_failed) {
       // We're decoding as fast as possible, so when one decode fails, start another.
       state = State.PREVIEW;
-      CameraManager.get().requestPreviewFrame(decodeThread.getHandler(), R.id.decode);
-    }else if (what == R.id.return_scan_result) {
+      CameraManager.get().requestPreviewFrame(decodeThread.getHandler(), R.id.zxing_decode);
+    }else if (what == R.id.zxing_return_scan_result) {
       if (ZXingConf.DEBUG) {
         Log.d(TAG, "Got return scan result message");
       }
       activity.setResult(Activity.RESULT_OK, (Intent) message.obj);
       activity.finish();
-    }else if (what == R.id.launch_product_query) {
+    }else if (what == R.id.zxing_launch_product_query) {
       if (ZXingConf.DEBUG) {
         Log.d(TAG, "Got product query message");
       }
@@ -117,7 +117,7 @@ public final class CaptureActivityHandler extends Handler {
   public void quitSynchronously() {
     state = State.DONE;
     CameraManager.get().stopPreview();
-    Message quit = Message.obtain(decodeThread.getHandler(), R.id.quit);
+    Message quit = Message.obtain(decodeThread.getHandler(), R.id.zxing_quit);
     quit.sendToTarget();
     try {
       decodeThread.join();
@@ -128,15 +128,15 @@ public final class CaptureActivityHandler extends Handler {
     }
 
     // Be absolutely sure we don't send any queued up messages
-    removeMessages(R.id.decode_succeeded);
-    removeMessages(R.id.decode_failed);
+    removeMessages(R.id.zxing_decode_succeeded);
+    removeMessages(R.id.zxing_decode_failed);
   }
 
   private void restartPreviewAndDecode() {
     if (state == State.SUCCESS) {
       state = State.PREVIEW;
-      CameraManager.get().requestPreviewFrame(decodeThread.getHandler(), R.id.decode);
-      CameraManager.get().requestAutoFocus(this, R.id.auto_focus);
+      CameraManager.get().requestPreviewFrame(decodeThread.getHandler(), R.id.zxing_decode);
+      CameraManager.get().requestAutoFocus(this, R.id.zxing_auto_focus);
       activity.drawViewfinder();
     }
   }

@@ -58,8 +58,8 @@ public class CaptureActivity extends Activity implements Callback {
         setContentView(R.layout.camera);
         //ViewUtil.addTopView(getApplicationContext(), this, R.string.scan_card);
         CameraManager.init(getApplication());
-        viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);
-        cancelScanButton = (Button) this.findViewById(R.id.btn_cancel_scan);
+        viewfinderView = (ViewfinderView) findViewById(R.id.zxing_view_finder_zxing_camera_viewfinder_view);
+        cancelScanButton = (Button) this.findViewById(R.id.zxing_btn_act_camera_cancel_scan);
         hasSurface = false;
         inactivityTimer = new InactivityTimer(this);
     }
@@ -67,7 +67,7 @@ public class CaptureActivity extends Activity implements Callback {
     @Override
     protected void onResume() {
         super.onResume();
-        SurfaceView surfaceView = (SurfaceView) findViewById(R.id.preview_view);
+        SurfaceView surfaceView = (SurfaceView) findViewById(R.id.sv_zxing_camera_preview_view);
         SurfaceHolder surfaceHolder = surfaceView.getHolder();
         if (hasSurface) {
             initCamera(surfaceHolder);
@@ -133,7 +133,7 @@ public class CaptureActivity extends Activity implements Callback {
         } else {
             Intent resultIntent = new Intent();
             Bundle bundle = new Bundle();
-            bundle.putString("result", resultString);
+            bundle.putString(ZXingConf.KEY_SCAN_RESULT, resultString);
             resultIntent.putExtras(bundle);
             this.setResult(RESULT_OK, resultIntent);
         }

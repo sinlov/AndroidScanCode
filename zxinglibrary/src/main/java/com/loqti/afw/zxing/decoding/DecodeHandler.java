@@ -52,10 +52,10 @@ final class DecodeHandler extends Handler {
   @Override
   public void handleMessage(Message message) {
     int what = message.what;
-    if (what == R.id.decode) {
+    if (what == R.id.zxing_decode) {
       //Log.d(TAG, "Got decode message");
       decode((byte[]) message.obj, message.arg1, message.arg2);
-    }else if (what == R.id.quit) {
+    }else if (what == R.id.zxing_quit) {
       Looper.myLooper().quit();
     }
   }
@@ -97,14 +97,14 @@ final class DecodeHandler extends Handler {
         if (ZXingConf.DEBUG) {
             Log.d(TAG, "Found barcode (" + (end - start) + " ms):\n" + rawResult.toString());
         }
-      Message message = Message.obtain(activity.getHandler(), R.id.decode_succeeded, rawResult);
+      Message message = Message.obtain(activity.getHandler(), R.id.zxing_decode_succeeded, rawResult);
       Bundle bundle = new Bundle();
       bundle.putParcelable(DecodeThread.BARCODE_BITMAP, source.renderCroppedGreyscaleBitmap());
       message.setData(bundle);
       //Log.d(TAG, "Sending decode succeeded message...");
       message.sendToTarget();
     } else {
-      Message message = Message.obtain(activity.getHandler(), R.id.decode_failed);
+      Message message = Message.obtain(activity.getHandler(), R.id.zxing_decode_failed);
       message.sendToTarget();
     }
   }
