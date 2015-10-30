@@ -89,13 +89,13 @@ public final class CameraConfigurationManager {
      * @param parameters
      */
     private void rotationCamera(Camera camera, Camera.Parameters parameters) {
-        //FIXME sometimes will stretch image
-        int screenResolutionY = screenResolution.y;
+        //FIXME it will stretch image
+        /*int screenResolutionY = screenResolution.y;
         if (cameraResolution.x < screenResolutionY) {
             parameters.setPreviewSize(screenResolutionY, cameraResolution.y);
         } else {
-            parameters.setPreviewSize(cameraResolution.x, cameraResolution.y);
-        }
+        }*/
+        parameters.setPreviewSize(cameraResolution.x, cameraResolution.y);
         setFlash(parameters);
         setZoom(parameters);
         camera.setDisplayOrientation(90);
