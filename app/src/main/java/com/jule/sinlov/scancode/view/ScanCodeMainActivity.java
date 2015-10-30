@@ -18,11 +18,11 @@ import com.jule.sinlov.scancode.view.scan.ScanResultActivity;
 import com.loqti.afw.lifecycle.BaseActivity;
 
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
+import java.util.List;
 
 public class ScanCodeMainActivity extends BaseActivity implements AdapterView.OnItemClickListener {
 
-    private ArrayList<String> debugItems;
+    private List<String> debugItems;
     private ListView lvDemoList;
     private ArrayAdapter<String> stringArrayAdapter;
     private DoubleClick2QuitApp doubleClick2QuitApp;
@@ -31,10 +31,10 @@ public class ScanCodeMainActivity extends BaseActivity implements AdapterView.On
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (position) {
             case 0:
-                startActivity(new Intent(ScanCodeMainActivity.this, QRCodeCreateActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                startActivity(new Intent(ScanCodeMainActivity.this, ScanResultActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                 break;
             case 1:
-                startActivity(new Intent(ScanCodeMainActivity.this, ScanResultActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                startActivity(new Intent(ScanCodeMainActivity.this, QRCodeCreateActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                 break;
             default:
                 break;
@@ -47,9 +47,8 @@ public class ScanCodeMainActivity extends BaseActivity implements AdapterView.On
     }
 
     private void initData() {
-        debugItems = new ArrayList<String>();
-        debugItems.add("Create Code");
-        debugItems.add("Scan Code");
+        String[] itemArray = getResources().getStringArray(R.array.array_act_main_operation);
+        debugItems = java.util.Arrays.asList(itemArray);
     }
 
     private void initView() {

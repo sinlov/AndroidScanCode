@@ -9,4 +9,5 @@
     <string name="content_img_act_create_result">content:img:act:create:result</string>
     <string name="toast_msg_error_input">Error Input, pleas check!</string>
     <string name="tv_act_scan_result_hint">For show scan result</string>
+    <string name="btn_act_scan_result_open">Open Camera</string>
 </resources>

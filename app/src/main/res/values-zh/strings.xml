@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">扫码器</string>
+
+    <string name="action_settings">设置</string>
+    <string name="title_activity_qrcode_create">创建二维码</string>
+    <string name="title_activity_scan_result">扫码</string>
+    <string name="toast_msg_double_click_exit_app">双击退出应用</string>
+    <string name="btn_act_create_submit">提交</string>
+    <string name="content_img_act_create_result">content:img:act:create:result</string>
+    <string name="toast_msg_error_input">错误的输入，请重试</string>
+    <string name="tv_act_scan_result_hint">这里会显示扫描的结果</string>
+    <string name="btn_act_scan_result_open">打开相机</string>
+</resources>

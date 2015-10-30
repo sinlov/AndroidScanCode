@@ -16,6 +16,7 @@
         <Button
             android:id="@+id/btn_act_scan_result_open_camera"
             android:layout_width="match_parent"
+            android:text="@string/btn_act_scan_result_open"
             android:layout_height="wrap_content"/>
 
         <TextView
