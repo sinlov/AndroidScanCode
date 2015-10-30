@@ -77,10 +77,10 @@ public final class CameraConfigurationManager {
      */
     void setDesiredCameraParameters(Camera camera) {
         Camera.Parameters parameters = camera.getParameters();
+        rotationCamera(camera, parameters);
         if (ZXingConf.DEBUG) {
             Log.d(TAG, "Setting preview size: " + cameraResolution);
         }
-        rotationCamera(camera, parameters);
     }
 
     /**
@@ -89,7 +89,13 @@ public final class CameraConfigurationManager {
      * @param parameters
      */
     private void rotationCamera(Camera camera, Camera.Parameters parameters) {
-        parameters.setPreviewSize(cameraResolution.x, cameraResolution.y);
+        //FIXME sometimes will stretch image
+        int screenResolutionY = screenResolution.y;
+        if (cameraResolution.x < screenResolutionY) {
+            parameters.setPreviewSize(screenResolutionY, cameraResolution.y);
+        } else {
+            parameters.setPreviewSize(cameraResolution.x, cameraResolution.y);
+        }
         setFlash(parameters);
         setZoom(parameters);
         camera.setDisplayOrientation(90);
