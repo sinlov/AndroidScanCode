@@ -10,4 +10,10 @@
     <string name="toast_msg_error_input">Error Input, pleas check!</string>
     <string name="tv_act_scan_result_hint">For show scan result</string>
     <string name="btn_act_scan_result_open">Open Camera</string>
+    <string name="str_main_create_scan_code">Scan Code</string>
+    <string name="str_main_create_qr_code">Create QR Code</string>
+    <string-array name="array_act_main_operation">
+        <item>@string/str_main_create_scan_code</item>
+        <item>@string/str_main_create_qr_code</item>
+    </string-array>
 </resources>

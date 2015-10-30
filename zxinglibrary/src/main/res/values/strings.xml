@@ -3,10 +3,4 @@
     <string name="zxing_tv_act_camera_scan_title">Scan Barcode</string>
     <string name="zxing_btn_act_camera_scan_cancel">Cancel</string>
     <string name="zxing_tv_act_camera_scan_prompt_info">Scan Info</string>
-    <string name="str_main_create_scan_code">Scan Code</string>
-    <string name="str_main_create_qr_code">Create QR Code</string>
-    <string-array name="array_act_main_operation">
-        <item>@string/str_main_create_scan_code</item>
-        <item>@string/str_main_create_qr_code</item>
-    </string-array>
 </resources>
