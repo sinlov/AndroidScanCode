@@ -17,7 +17,7 @@ import com.jule.sinlov.scancode.application.ScanCodeApplication;
 import com.loqti.afw.base.codewidget.ToastBuilder;
 import com.loqti.afw.lifecycle.BaseActivity;
 import com.loqti.afw.utils.InputMethod;
-import com.loqti.afw.zxing.QRBitmapBuilder;
+import com.loqti.afw.zxing.encoding.QRBitmapBuilder;
 
 import java.lang.ref.WeakReference;
 
@@ -46,6 +46,7 @@ public class QRCodeCreateActivity extends BaseActivity implements View.OnClickLi
             InputMethod.closeInputPan(this);
             try {
 //                Bitmap qrMap = QRBitmapBuilder.createQRBitMap(input, 800, 800);
+//                EncodingHandler.createQRCode(input, 800);
                 Bitmap qrMap = QRBitmapBuilder.createQRBitMapWithImage(input,
                         BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
                 if (null != qrMap) {

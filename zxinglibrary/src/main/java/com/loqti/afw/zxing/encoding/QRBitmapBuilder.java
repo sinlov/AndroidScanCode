@@ -1,4 +1,4 @@
-package com.loqti.afw.zxing;
+package com.loqti.afw.zxing.encoding;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
