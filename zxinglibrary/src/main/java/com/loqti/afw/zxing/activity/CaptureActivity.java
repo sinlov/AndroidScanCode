@@ -50,6 +50,7 @@ public class CaptureActivity extends Activity implements Callback {
     private static final float BEEP_VOLUME = 0.10f;
     private boolean vibrate;
     private Button cancelScanButton;
+    private AlertDialog cameraErrorDialog;
 
     /**
      * Called when the activity is first created.
@@ -61,6 +62,7 @@ public class CaptureActivity extends Activity implements Callback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.camera);
         //ViewUtil.addTopView(getApplicationContext(), this, R.string.scan_card);
+        cameraErrorDialog = initCameraOpenErrorDialog();
         CameraManager.init(getApplication());
         viewfinderView = (ViewfinderView) findViewById(R.id.zxing_view_finder_zxing_camera_viewfinder_view);
         cancelScanButton = (Button) this.findViewById(R.id.zxing_btn_act_camera_cancel_scan);
@@ -165,8 +167,14 @@ public class CaptureActivity extends Activity implements Callback {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void showCameraOpenErrorDialog() {
+        if (null != cameraErrorDialog){
+            cameraErrorDialog.show();
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    private AlertDialog initCameraOpenErrorDialog() {
         AlertDialog.Builder cameraErrorDialogBuilder = new AlertDialog.Builder(CaptureActivity.this, AlertDialog.THEME_HOLO_LIGHT)
                 .setTitle(R.string.zxing_dialog_camera_open_error_title)
                 .setMessage(R.string.zxing_dialog_camera_open_error_message)
@@ -178,7 +186,7 @@ public class CaptureActivity extends Activity implements Callback {
                 });
         AlertDialog cameraErrorDialog = cameraErrorDialogBuilder.create();
         cameraErrorDialog.setCanceledOnTouchOutside(false);
-        cameraErrorDialog.show();
+        return cameraErrorDialog;
     }
 
     @Override
