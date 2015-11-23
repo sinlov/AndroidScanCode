@@ -3,7 +3,7 @@
     <string name="zxing_tv_act_camera_scan_title">扫描相机</string>
     <string name="zxing_btn_act_camera_scan_cancel">取消</string>
     <string name="zxing_tv_act_camera_scan_prompt_info">请将二维码放入框内</string>
-    <string name="zxing_dialog_camera_open_error_postive_button">明白了</string>
+    <string name="zxing_dialog_camera_open_error_positive_button">明白了</string>
     <string name="zxing_dialog_camera_open_error_title">开启相机错误</string>
     <string name="zxing_dialog_camera_open_error_message">请给予本应用相机权限，否则无法使用扫描，权限开启在手机的APP权限管理中。</string>
 </resources>

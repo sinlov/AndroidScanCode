@@ -170,7 +170,7 @@ public class CaptureActivity extends Activity implements Callback {
         AlertDialog.Builder cameraErrorDialogBuilder = new AlertDialog.Builder(CaptureActivity.this, AlertDialog.THEME_HOLO_LIGHT)
                 .setTitle(R.string.zxing_dialog_camera_open_error_title)
                 .setMessage(R.string.zxing_dialog_camera_open_error_message)
-                .setPositiveButton(R.string.zxing_dialog_camera_open_error_postive_button, new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.zxing_dialog_camera_open_error_positive_button, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
