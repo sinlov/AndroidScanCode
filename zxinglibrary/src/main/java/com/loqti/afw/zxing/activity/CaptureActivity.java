@@ -1,12 +1,16 @@
 package com.loqti.afw.zxing.activity;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
@@ -149,6 +153,7 @@ public class CaptureActivity extends Activity implements Callback {
             }
             return;
         } catch (RuntimeException e) {
+            showCameraOpenErrorDialog();
             if (ZXingConf.DEBUG) {
                 e.printStackTrace();
             }
@@ -158,6 +163,22 @@ public class CaptureActivity extends Activity implements Callback {
             handler = new CaptureActivityHandler(this, decodeFormats,
                     characterSet);
         }
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    private void showCameraOpenErrorDialog() {
+        AlertDialog.Builder cameraErrorDialogBuilder = new AlertDialog.Builder(CaptureActivity.this, AlertDialog.THEME_HOLO_LIGHT)
+                .setTitle(R.string.zxing_dialog_camera_open_error_title)
+                .setMessage(R.string.zxing_dialog_camera_open_error_message)
+                .setPositiveButton(R.string.zxing_dialog_camera_open_error_postive_button, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog cameraErrorDialog = cameraErrorDialogBuilder.create();
+        cameraErrorDialog.setCanceledOnTouchOutside(false);
+        cameraErrorDialog.show();
     }
 
     @Override

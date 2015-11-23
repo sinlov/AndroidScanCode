@@ -2,5 +2,8 @@
     <string name="app_name">ZxingLibrary</string>
     <string name="zxing_tv_act_camera_scan_title">Scan Barcode</string>
     <string name="zxing_btn_act_camera_scan_cancel">Cancel</string>
-    <string name="zxing_tv_act_camera_scan_prompt_info">Scan Info</string>
+    <string name="zxing_tv_act_camera_scan_prompt_info">Please put single QR code into frame!</string>
+    <string name="zxing_dialog_camera_open_error_title">Camera Open Error</string>
+    <string name="zxing_dialog_camera_open_error_message">Use the camera to give permission, permission to open at the phone\'s APP Permission management !</string>
+    <string name="zxing_dialog_camera_open_error_postive_button">OK</string>
 </resources>
